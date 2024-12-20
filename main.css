@@ -1,0 +1,84 @@
+*{
+    font-family: Helvetica Neue, sans-serif;
+}
+
+
+
+
+body{
+    background-image: url('./Images/Background.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    overflow-x: hidden;
+}
+
+html{
+    height: 200%;
+}
+
+
+.profile{
+    background-color: rgba(223, 224, 230, 0.481);
+    border-radius: 10%;
+
+}
+
+
+h1{
+    font-weight: bold;
+    color: rgb(215, 208, 159);
+    
+}
+
+.title{
+    max-width: fit-content;
+    font-weight: bold;
+    background-color: rgba(0, 28, 185, 0.271);
+    font-size: 3em;
+}
+
+.h5{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+a #git{
+    border: inset;
+    border-radius: 50%;
+    min-width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.46);
+}
+
+
+
+a #linkedin{
+    border: inset;
+    border-radius: 50%;
+    min-width: 100px;
+    height: 100px;
+    background-color: rgba(115, 135, 248, 0.365);
+    
+}
+
+h2{
+    font-size: 3em;
+    color: rgb(215, 208, 159);
+    font-weight: bold;
+    background-color: rgba(0, 28, 185, 0.271);
+}
+
+p{
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    background-color: rgba(0, 1, 8, 0.457);
+    border-radius: 1%;
+}
+
+#skills {
+    max-width: 300px;
+    max-height: 300px;
+}
+
