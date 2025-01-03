@@ -77,6 +77,7 @@ p{
     font-size: 2em;
     background-color: rgba(0, 1, 8, 0.457);
     border-radius: 1%;
+    font-size: px-medium md;
 }
 
 .modal p {
@@ -90,3 +91,19 @@ p{
     max-height: 300px;
 }
 
+@media (min-width: 366px) {
+    .font-sm {font-size:15px}
+    
+    
+}
+
+@media (min-width: 768px) {
+    .font-md {font-size: 20px}
+    
+}
+
+
+@media (min-width: 1200px) {
+    .font-lg {font-size: 30px}
+    
+}
