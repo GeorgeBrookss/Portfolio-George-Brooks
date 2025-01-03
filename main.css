@@ -43,6 +43,9 @@ h1{
     font-weight: bold;
 }
 
+#about{
+    width: 100%;
+}
 
 a #git{
     border: inset;
@@ -69,12 +72,17 @@ h2{
     font-weight: bold;
     background-color: rgba(0, 28, 185, 0.271);
 }
-
 p{
     color: rgb(255, 255, 255);
     font-size: 2em;
     background-color: rgba(0, 1, 8, 0.457);
     border-radius: 1%;
+}
+
+.modal p {
+    color: inherit; 
+    font-size: inherit; 
+    background-color: inherit;
 }
 
 #skills {
