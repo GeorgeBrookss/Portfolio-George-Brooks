@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Tags from "../../components/Tag";
 import IconGit from "../../assets/icons/iconGit.svg";
-import IconVercel from "../../assets/icons/IconVercel.svg";
+import IconVercel from "../../assets/icons/iconVercel.svg";
 
 
 
