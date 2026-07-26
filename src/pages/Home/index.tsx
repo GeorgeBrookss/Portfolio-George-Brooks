@@ -13,7 +13,7 @@ import Textarea from "../../components/TextArea"
 import Button from "../../components/Button"
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { toast } from "react-toastify";
+import Toast from "../../components/Toast";
 
 function Home() {
 
@@ -21,21 +21,33 @@ function Home() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-const sendEmail = async (e: React.FormEvent) => {
+    const [toastVisible, setToastVisible] = useState(false);
+
+    const [toastType, setToastType] = useState<"success" | "error">("success");
+
+    const [toastMessage, setToastMessage] = useState("");
+
+const sendEmail = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
+    const showValidationError = (msg: string) => {
+        setToastType("error");
+        setToastMessage(msg);
+        setToastVisible(true);
+    };
+
     if (!name.trim()) {
-        alert("Digite seu nome.");
+        showValidationError("Digite seu nome.");
         return;
     }
 
     if (!email.trim()) {
-        alert("Digite seu e-mail.");
+        showValidationError("Digite seu e-mail.");
         return;
     }
 
     if (!message.trim()) {
-        alert("Digite uma mensagem.");
+        showValidationError("Digite uma mensagem.");
         return;
     }
 
@@ -51,13 +63,17 @@ const sendEmail = async (e: React.FormEvent) => {
             "FnCezHejbUdAb0YpF"
         );
 
-        toast.success("Mensagem enviada com sucesso!");
+        setToastType("success");
+        setToastMessage("Mensagem enviada com sucesso!");
+        setToastVisible(true);
 
         setName("");
         setEmail("");
         setMessage("");
     } catch (error) {
-        toast.error("Erro ao enviar mensagem.");
+        setToastType("error");
+        setToastMessage("Não foi possível enviar a mensagem.");
+        setToastVisible(true);
         console.error(error);
     }
 };
@@ -202,6 +218,12 @@ const sendEmail = async (e: React.FormEvent) => {
                 </ContactStyled>
         </HomeStyled>
         <Footer />
+        <Toast
+            visible={toastVisible}
+            type={toastType}
+            message={toastMessage}
+            onClose={() => setToastVisible(false)}
+        />
         </>
     )
 }
