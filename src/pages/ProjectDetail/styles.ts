@@ -56,7 +56,6 @@ export const ProjectContent = styled.div`
   @media (min-width: 768px) and (max-width: 1116px) {
     justify-content: center;
   }
-
 `;
 
 export const ProjectImage = styled.img`

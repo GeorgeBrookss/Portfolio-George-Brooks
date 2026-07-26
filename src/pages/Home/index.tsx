@@ -11,8 +11,58 @@ import ButtonMail from "../../assets/images/Home/formButtons/buttonMail.png"
 import Label from "../../components/Label"
 import Textarea from "../../components/TextArea"
 import Button from "../../components/Button"
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 function Home() {
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+const sendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!name.trim()) {
+        alert("Digite seu nome.");
+        return;
+    }
+
+    if (!email.trim()) {
+        alert("Digite seu e-mail.");
+        return;
+    }
+
+    if (!message.trim()) {
+        alert("Digite uma mensagem.");
+        return;
+    }
+
+    try {
+        await emailjs.send(
+            "service_40ikr9z",
+            "template_bd7jmn7",
+            {
+                from_name: name,
+                from_email: email,
+                message,
+            },
+            "FnCezHejbUdAb0YpF"
+        );
+
+        toast.success("Mensagem enviada com sucesso!");
+
+        setName("");
+        setEmail("");
+        setMessage("");
+    } catch (error) {
+        toast.error("Erro ao enviar mensagem.");
+        console.error(error);
+    }
+};
+
+
     return (
         <>
         <Header />
@@ -120,21 +170,33 @@ function Home() {
                             </li>
                         </ul>
                     </div>
-                    <form action="#">
-                        <Label id="name"
+                    <form onSubmit={sendEmail}>
+                        <Label
+                        id="name"
                         label="Nome"
-                        placeholder="Digite seu nome" />
+                        placeholder="Digite seu nome"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                     
-                        <Label id="E-mail"
+                        <Label
+                            id="email"
+                            type="email"
                             label="E-mail"
-                            placeholder="exemplo@email.com" />
+                            placeholder="exemplo@email.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     
-                        <Textarea id="mensagem"
-                        name="textarea"
-                        label="Mensagem"
-                        placeholder="Olá George, tenho um projeto..." />
+                        <Textarea
+                            id="message"
+                            label="Mensagem"
+                            placeholder="Olá George, tenho um projeto..."
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
 
-                        <Button children="Enviar Mensagem " />
+                        <Button children="Enviar Mensagem" type="submit" />
                     </form>
                 </div>
                 </ContactStyled>
