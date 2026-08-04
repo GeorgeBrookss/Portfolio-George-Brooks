@@ -11,9 +11,11 @@ import ButtonMail from "../../assets/images/Home/formButtons/buttonMail.png"
 import Label from "../../components/Label"
 import Textarea from "../../components/TextArea"
 import Button from "../../components/Button"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import Toast from "../../components/Toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
 
@@ -27,7 +29,14 @@ function Home() {
 
     const [toastMessage, setToastMessage] = useState("");
 
-const sendEmail = async (e: React.SubmitEvent) => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    }, []);
+
+const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const showValidationError = (msg: string) => {
@@ -90,13 +99,19 @@ const sendEmail = async (e: React.SubmitEvent) => {
             </HeroTitle>
             <AboutStyled id="About">
                 <h3>Sobre Mim</h3>
-                <p>Desenvolvedor Front-end com experiência em aplicações web responsivas, escaláveis e de alta performance utilizando React, TypeScript, JavaScript, HTML5 e CSS3, frameworks, bibliotecas e ferramentas modernas. Habilidade em traduzir designs do Figma em componentes de UI reutilizáveis, integrar APIs REST, otimizar performance e colaborar em todo o ciclo de vida de desenvolvimento de software para entregar aplicações limpas, de fácil manutenção e focadas no usuário.</p>
+                <p>
+                    Sou um Desenvolvedor Front-end especializado no ecossistema React e TypeScript, apaixonado por transformar protótipos em aplicações web escaláveis, responsivas e de alta performance.
+                    <br />
+                    Atuo em todo o ciclo de desenvolvimento das interfaces, desde a concepção visual no Figma até a entrega final em produção. Ao longo da minha trajetória, desenvolvi desde plataformas SaaS integradas com inteligência artificial até e-commerces temáticos e sistemas de reservas otimizados para conversão e SEO.
+                    <br />
+                    Gosto de alinhar código limpo e arquitetura de componentes com as reais necessidades de Produto e Marketing, garantindo uma navegação fluida e acessível e também uma experiência de usuário que gere valor e impacto real.
+                </p>
             </AboutStyled>
             <ProjectsStyled id="Projects">
                 <h3 className="projects">Projetos</h3>
                 <ul>
-                {projects.map((project) => (
-                <li key={project.id}>
+                {projects.map((project, index) => (
+                <li key={project.id} data-aos="zoom-in" data-aos-delay={index * 100}>
                     <ProjectLink to={`/projeto/${project.id}`}>
                     <Card
                         title={project.title}
@@ -112,8 +127,8 @@ const sendEmail = async (e: React.SubmitEvent) => {
                     <h3 className="stacks">Tecnologias</h3>
                     <h3>Front-end</h3>
                     <ul>
-                    {frontend.map((tech) => (
-                        <li key={tech.name}>
+                    {frontend.map((tech, index) => (
+                        <li key={tech.name} data-aos="fade-up" data-aos-delay={index * 100}>
                         <img src={tech.image} alt={tech.name} />
                         </li>
                     ))}
@@ -122,8 +137,8 @@ const sendEmail = async (e: React.SubmitEvent) => {
                     <h3>Back-end</h3>
 
                     <ul>
-                    {backend.map((tech) => (
-                        <li key={tech.name}>
+                    {backend.map((tech, index) => (
+                        <li key={tech.name} data-aos="fade-up" data-aos-delay={index * 100}>
                         <img src={tech.image} alt={tech.name} />
                         </li>
                     ))}
@@ -132,8 +147,8 @@ const sendEmail = async (e: React.SubmitEvent) => {
                     <h3 className="tool">Ferramentas</h3>
 
                     <ul>
-                    {tools.map((tech) => (
-                        <li key={tech.name}>
+                    {tools.map((tech, index) => (
+                        <li key={tech.name} data-aos="fade-up" data-aos-delay={index * 100}>
                         <img src={tech.image} alt={tech.name} />
                         </li>
                     ))}
